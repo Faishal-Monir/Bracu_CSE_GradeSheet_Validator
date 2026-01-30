@@ -1,5 +1,7 @@
 # BRACU Gradesheet Validator
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![PDF.js](https://img.shields.io/badge/PDF.js-FF0000?logo=mozilla&logoColor=white)
+
 A lightweight, browser-based gradesheet analyzer for BRACU CSE. Upload a BRACU CSE grade sheet PDF, extract completed courses, and view missing core requirements with a clean, responsive UI.
 
 <img src="./logo.jpg" alt="Project logo" width="160">
@@ -65,4 +67,5 @@ See `LICENSE`.
 
 ## Live link
 
-Add your GitHub Pages URL here once published.
+https://faishal-monir.github.io/Bracu_CSE_GradeSheet_Validator/
+
