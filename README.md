@@ -52,8 +52,6 @@ A lightweight, browser-based gradesheet validator for BRACU CS and CSE students.
 +- index.html          # Main UI
 +- styles.css          # Styling (light + dark themes)
 +- app.js              # PDF parsing + UI rendering
-+- vendor/             # Local PDF.js build
 +- logo.jpg            # Favicon / branding
-+- *.pdf               # Sample PDFs (optional)
 +- LICENSE             # Project license
 +- README.md           # Project documentation
