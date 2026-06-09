@@ -8,7 +8,7 @@ A lightweight, browser-based gradesheet validator for BRACU CS and CSE students.
 
 ## Live Demo
 
-[Open the app](https://faishal-monir.github.io/Bracu_CSE_GradeSheet_Validator/)
+[Open the app](https://faishal-monir.github.io/Bracu_CSE_CS_GradeSheet_Validator)
 
 ## Features
 
