@@ -1,127 +1,105 @@
 /* global pdfjsLib */
 
-const CSE_COURSE_CATALOG = [
-  { code: "ENG091", title: "Foundation Course", credits: 0.0, category: "UNIVERSITY CORE", stream: "Stream 1: Writing Comprehension" },
-  { code: "ENG101", title: "English Fundamentals", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 1: Writing Comprehension" },
-  { code: "ENG102", title: "English Composition I", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 1: Writing Comprehension" },
-  { code: "ENG103", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 1: Writing Comprehension" },
-  { code: "MAT092", title: "Remedial Course in Mathematics", credits: 0.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "MAT110", title: "MATH I: Differential Calculus and Co-ordinate Geometry", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "PHY111", title: "Principles of Physics I", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "STA201", title: "Elements of Statistics and Probability", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "CHE101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "BIO101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "ENV103", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 2: Math and Natural Sciences" },
-  { code: "HUM103", title: "Ethics and Culture", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "BNG103", title: "Bangla Language and Literature", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HUM101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HUM102", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HST102", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HST104", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HUM207", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "ENG113", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "ENG114", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "ENG115", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "ENG333", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "ACT201", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "ACT202", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "BUS101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "BUS202", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "BCH101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "BTE101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "CHE110", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "CHN101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "FRN101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "FIN301", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "GEO101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "LAW101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HUM111", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "HST407", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "STA301", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 3: Arts and Humanities" },
-  { code: "EMB101", title: "Emergence Of Bangladesh / Bangladesh Studies", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "PSY101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "SOC101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ANT101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "POL101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "BUS201", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ECO101", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ECO102", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ECO105", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "BUS102", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "POL102", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "DEV104", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "POL201", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ANT202", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "SOC201", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ANT342", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "ANT351", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "BUS333", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 4: Social Sciences" },
-  { code: "CST301", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST302", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST303", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST304", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST305", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST306", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST307", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST308", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST309", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "CST310", title: "", credits: 3.0, category: "UNIVERSITY CORE", stream: "Stream 5: Communities, Seeking Transformation" },
-  { code: "MAT120", title: "MATH II: Integral Calculus and Differential Equations", credits: 3.0, category: "SCHOOL CORE", stream: "" },
-  { code: "MAT215", title: "MATH III:", credits: 3.0, category: "SCHOOL CORE", stream: "" },
-  { code: "MAT216", title: "MATH IV:", credits: 3.0, category: "SCHOOL CORE", stream: "" },
-  { code: "PHY112", title: "Principles of Physics II", credits: 3.0, category: "SCHOOL CORE", stream: "" },
-  { code: "CSE110", title: "Programming Language I", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE111", title: "Programming Language II", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE220", title: "Data Structures", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE221", title: "Algorithms", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE230", title: "Discrete Mathematics", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE250", title: "Circuits and Electronics", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE251", title: "Electronic Devices and Circuits", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE260", title: "Digital Logic Design", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE320", title: "Data Communications", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE321", title: "Operating System", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE330", title: "Numerical Methods", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE331", title: "Automata and Computability", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE340", title: "Computer Architecture", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE341", title: "Microprocessors", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE350", title: "Digital Electronics and Pulse Techniques", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE360", title: "Computer Interfacing", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE370", title: "Database Systems", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE420", title: "Compiler Design", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE421", title: "Computer Networks", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE422", title: "Artificial Intelligence", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE423", title: "Computer Graphics", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE460", title: "VLSI Design", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE461", title: "Introduction to Robotics", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE470", title: "Software Engineering", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE471", title: "Systems Analysis and Design", credits: 3.0, category: "PROGRAM CORE", stream: "" },
-  { code: "CSE400", title: "PROJECT & THESIS", credits: 4.0, category: "PROJECT / INTERNSHIP / THESIS", stream: "" }
-];
+const COURSE_CREDIT_DEFAULT = 3;
+const PROJECT_CREDIT = 4;
 
-const PROGRAMS = {
-  cse: {
-    key: "cse",
+const gradePoints = {
+  "A+": 4.0, A: 4.0, "A-": 3.7,
+  "B+": 3.3, B: 3.0, "B-": 2.7,
+  "C+": 2.3, C: 2.0, "C-": 1.7,
+  "D+": 1.3, D: 1.0, F: 0.0
+};
+
+const courseTitleMap = {
+  ENG091: "Foundation Course (in English)", ENG101: "Fundamentals of English", ENG102: "English Composition I", ENG103: "Advanced Writing Skills and Presentation",
+  MAT092: "Remedial Course in Mathematics", MAT110: "Mathematics I: Differential Calculus & Coordinate Geometry", PHY111: "Principles of Physics I", STA201: "Elements of Statistics and Probability", CHE101: "Introduction to Chemistry", BIO101: "Introduction to Biology", ENV103: "Elements of Environmental Sciences",
+  HUM103: "Ethics and Culture", BNG103: "Bangla Language and Literature", HUM101: "World Civilization and Culture", HUM102: "Introduction to Philosophy", HST102: "History of the Emergence of Bangladesh", HST103: "History of Civilization", HST104: "Modern World History", HUM207: "Introduction to Culture and Society", ENG110: "English Reading Skills", ENG113: "Introduction to English Literature", ENG114: "Introduction to Drama", ENG115: "Introduction to Poetry", ENG333: "Globalization and the Media", HUM210: "Cultural Studies", HUM301: "Topics in Humanities",
+  EMB101: "Emergence of Bangladesh", DEV101: "Bangladesh Studies", PSY101: "Introduction to Psychology", SOC101: "Introduction to Sociology", ANT101: "Introduction to Anthropology", POL101: "Introduction to Political Science", BUS201: "Business Communication", ECO101: "Introduction to Microeconomics", ECO102: "Introduction to Macroeconomics", ECO105: "Introduction to Economics", BUS102: "Business Studies", POL102: "Bangladesh Politics", POL103: "International Relations", POL201: "Comparative Politics", POL202: "Public Administration", PSY102: "Psychology", DEV104: "Development Studies", DEV201: "Development Theory", SOC201: "Sociology", ANT202: "Anthropology", ANT342: "Anthropology", ANT351: "Anthropology", BUS333: "Business Ethics", BUS334: "Business", BUS335: "Business", BU201: "Business",
+  CST201: "Communities, Seeking Transformation", CST301: "For the Love of Food", CST302: "Communities, Seeking Transformation", CST303: "Communities, Seeking Transformation", CST304: "Communities, Seeking Transformation", CST305: "Communities, Seeking Transformation", CST306: "Communities, Seeking Transformation", CST307: "Communities, Seeking Transformation", CST308: "Communities, Seeking Transformation", CST309: "Communities, Seeking Transformation", CST310: "Communities, Seeking Transformation",
+  MAT120: "Mathematics II: Integral Calculus & Differential Equations", MAT215: "Mathematics III: Complex Variables & Laplace Transformations", MAT216: "Mathematics IV: Linear Algebra & Fourier Analysis", PHY112: "Principles of Physics II",
+  CSE110: "Programming Language I", CSE111: "Programming Language II", CSE220: "Data Structures", CSE221: "Algorithms", CSE230: "Discrete Mathematics", CSE250: "Circuits and Electronics", CSE251: "Electronic Devices and Circuits", CSE260: "Digital Logic Design", CSE320: "Data Communications", CSE321: "Operating Systems", CSE330: "Numerical Methods", CSE331: "Automata and Computability", CSE340: "Computer Architecture", CSE341: "Microprocessors", CSE350: "Digital Electronics and Pulse Techniques", CSE360: "Computer Interfacing", CSE370: "Database Systems", CSE420: "Compiler Design", CSE421: "Computer Networks", CSE422: "Artificial Intelligence", CSE423: "Computer Graphics", CSE460: "VLSI Design", CSE461: "Introduction to Robotics", CSE470: "Software Engineering", CSE471: "Systems Analysis and Design", CSE400: "Project / Thesis", CSE427: "Machine Learning", CSE428: "Image Processing"
+};
+
+const sharedGenEd = {
+  writingRequired: ["ENG101", "ENG102"],
+  stream2Required: ["MAT110", "PHY111", "STA201"],
+  stream2Optional: ["CHE101", "BIO101", "ENV103"],
+  stream3Required: ["HUM103", "BNG103"],
+  stream3Choice: ["HUM101", "HUM102", "HST102", "HST103", "HST104", "HUM207", "ENG110", "ENG113", "ENG114", "ENG115", "ENG333", "HUM210", "HUM301"],
+  stream4FixedChoice: ["EMB101", "DEV101"],
+  stream4Choice: ["PSY101", "SOC101", "ANT101", "POL101", "BUS201", "ECO101", "ECO102", "ECO105", "BUS102", "POL102", "POL103", "POL201", "POL202", "PSY102", "DEV104", "DEV201", "SOC201", "ANT202", "ANT342", "ANT351", "BUS333", "BUS334", "BUS335", "BU201"],
+  stream5Choice: ["CST201", "CST301", "CST302", "CST303", "CST304", "CST305", "CST306", "CST307", "CST308", "CST309", "CST310"]
+};
+
+function makeGenEdAll(genEd) {
+  return new Set([
+    ...genEd.writingRequired, "ENG091", "ENG103", "MAT092",
+    ...genEd.stream2Required, ...genEd.stream2Optional,
+    ...genEd.stream3Required, ...genEd.stream3Choice,
+    ...genEd.stream4FixedChoice, ...genEd.stream4Choice,
+    ...genEd.stream5Choice
+  ]);
+}
+
+function makeProgramCoreGroups(codes) {
+  return codes.map(item => Array.isArray(item)
+    ? { label: item[0], options: item.slice(1) }
+    : { label: item, options: [item] });
+}
+
+const degreePlans = {
+  CSE: {
     name: "CSE",
     totalCreditsRequired: 136,
-    catalog: CSE_COURSE_CATALOG,
-    requiredCategories: new Set(["PROGRAM CORE", "SCHOOL CORE", "PROJECT / INTERNSHIP / THESIS"])
+    genEdCreditsRequired: 39,
+    schoolCoreCreditsRequired: 12,
+    programCoreCreditsRequired: 75,
+    programElectiveCreditsRequired: 6,
+    projectCreditsRequired: 4,
+    schoolCore: ["MAT120", "MAT215", "MAT216", "PHY112"],
+    programCoreGroups: makeProgramCoreGroups([
+      ["Programming Language I", "CSE110", "CSE161", "EEE103", "ECE103"],
+      "CSE111", "CSE220", "CSE221", "CSE230", "CSE250", "CSE251",
+      ["Digital Logic Design", "CSE260", "EEE283", "ECE283", "EEE301"],
+      "CSE320", "CSE321", "CSE330", "CSE331", "CSE340", "CSE341", "CSE350", "CSE360", "CSE370", "CSE420", "CSE421", "CSE422", "CSE423", "CSE460", "CSE461", "CSE470", "CSE471"
+    ]),
+    genEd: sharedGenEd
+  },
+  CS: {
+    name: "CS",
+    totalCreditsRequired: 124,
+    genEdCreditsRequired: 39,
+    schoolCoreCreditsRequired: 12,
+    programCoreCreditsRequired: 48,
+    programElectiveCreditsRequired: 21,
+    projectCreditsRequired: 4,
+    schoolCore: ["MAT120", "MAT215", "MAT216", "PHY112"],
+    programCoreGroups: makeProgramCoreGroups([
+      ["Programming Language I", "CSE110", "CSE161", "EEE103", "ECE103"],
+      "CSE111", "CSE220", "CSE221", "CSE230",
+      ["Digital Logic Design", "CSE260", "EEE283", "ECE283", "EEE301"],
+      "CSE321", "CSE330", "CSE331", "CSE340", "CSE370", "CSE420", "CSE421", "CSE422", "CSE423", "CSE470"
+    ]),
+    genEd: sharedGenEd
   }
 };
 
-const el = (id) => document.getElementById(id);
+for (const plan of Object.values(degreePlans)) {
+  plan.genEdAll = makeGenEdAll(plan.genEd);
+}
 
+const el = (id) => document.getElementById(id);
 const pdfInput = el("pdfInput");
 const analyzeBtn = el("analyzeBtn");
 const resetBtn = el("resetBtn");
 const downloadJsonBtn = el("downloadJsonBtn");
+const majorSelect = el("majorSelect");
 const darkModeToggle = el("darkModeToggle");
 const fontScaleRange = el("fontScaleRange");
-
 const statusPill = el("statusPill");
 const creditsEarned = el("creditsEarned");
 const creditsRequired = el("creditsRequired");
 const creditsRemaining = el("creditsRemaining");
-
 const missingTable = el("missingTable");
 const completedTable = el("completedTable");
 const alerts = el("alerts");
@@ -130,13 +108,10 @@ const studentId = el("studentId");
 const studentProgram = el("studentProgram");
 const currentSemester = el("currentSemester");
 const cgpa = el("cgpa");
-
 let lastResult = null;
-let activeProgramKey = "cse";
 
 if (window.pdfjsLib) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "./vendor/pdfjs/pdf.worker.min.js";
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 }
 
 pdfInput.addEventListener("change", () => {
@@ -145,89 +120,372 @@ pdfInput.addEventListener("change", () => {
   setStatus("Waiting", "secondary");
 });
 
+majorSelect.addEventListener("change", () => {
+  if (lastResult?.attemptsRaw && lastResult?.profile) {
+    runValidationAndRender(lastResult.profile, lastResult.attemptsRaw);
+  } else {
+    creditsRequired.textContent = (degreePlans[majorSelect.value] || degreePlans.CSE).totalCreditsRequired;
+  }
+});
+
 resetBtn.addEventListener("click", () => {
   pdfInput.value = "";
   analyzeBtn.disabled = true;
-  if (downloadJsonBtn) downloadJsonBtn.disabled = true;
+  downloadJsonBtn.disabled = true;
   lastResult = null;
   clearUI();
   setStatus("Waiting", "secondary");
 });
 
-if (darkModeToggle) {
-  darkModeToggle.addEventListener("change", () => {
-    document.body.classList.toggle("dark", darkModeToggle.checked);
-  });
-}
+darkModeToggle.addEventListener("change", () => document.body.classList.toggle("dark", darkModeToggle.checked));
 
-if (fontScaleRange) {
-  const applyFontScale = (value) => {
-    document.documentElement.style.setProperty("--base-font-scale", `${value}%`);
-  };
-  applyFontScale(fontScaleRange.value || 100);
-  fontScaleRange.addEventListener("input", (e) => {
-    applyFontScale(e.target.value);
-  });
-}
+const applyFontScale = (value) => document.documentElement.style.setProperty("--base-font-scale", `${value}%`);
+applyFontScale(fontScaleRange.value || 100);
+fontScaleRange.addEventListener("input", (e) => applyFontScale(e.target.value));
 
-if (downloadJsonBtn) {
-  downloadJsonBtn.addEventListener("click", () => {
-    if (!lastResult) return;
-    const blob = new Blob([JSON.stringify(lastResult, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "degree_progress_result.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  });
-}
+downloadJsonBtn.addEventListener("click", () => {
+  if (!lastResult) return;
+  const blob = new Blob([JSON.stringify(lastResult, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "degree_progress_result.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
 analyzeBtn.addEventListener("click", async () => {
   const file = pdfInput.files?.[0];
   if (!file) return;
-
   if (!window.pdfjsLib) {
     setStatus("Error", "danger");
-    showAlert("PDF.js failed to load. Check your network connection or run via a local server.", "danger");
+    showAlert("PDF.js failed to load. Check your internet connection or add a local PDF.js build.", "danger");
     return;
   }
-
   clearUI();
   setStatus("Parsing...", "warning");
-
   try {
-    const rows = await extractPdfRows(file);
-    console.log("Extracted rows:", rows.slice(0, 40));
-
-    if (!rows || rows.length === 0) {
-      setStatus("Error", "danger");
-      showAlert("No text found in the PDF. If it is scanned, you will need OCR (server-side).", "danger");
-      return;
-    }
-
-    setStudentProfile(extractStudentInfo(rows));
-
-    let completed = parseCoursesFromRows(rows);
-    if (completed.length === 0) {
-      const text = rows.join("\n");
-      completed = parseCoursesFromText(text);
-    }
-    console.log("Parsed courses:", completed);
-
-    const result = analyzeProgress(completed, getActiveProgram());
-    lastResult = result;
-
-    renderResult(result);
-    if (downloadJsonBtn) downloadJsonBtn.disabled = false;
-
-    setStatus("Done", "success");
+    const { rows, text } = await extractPdfText(file);
+    console.log("Extracted rows:", rows);
+    console.log("Extracted text:", text);
+    const profile = extractStudentInfo(rows, text);
+    setStudentProfile(profile);
+    const allAttempts = parseCourses(rows, text);
+    console.log("Parsed attempts:", allAttempts);
+    runValidationAndRender(profile, allAttempts);
   } catch (err) {
     console.error(err);
     setStatus("Error", "danger");
-    showAlert("Could not parse this PDF reliably. If it is scanned, you will need OCR (server-side).", "danger");
+    showAlert("Could not parse this PDF reliably. Scanned/image-only PDFs need OCR first.", "danger");
   }
 });
+
+
+function runValidationAndRender(profile, allAttempts) {
+  const selectedMajor = majorSelect.value || "CSE";
+  const detectedMajor = detectMajorFromProfile(profile);
+  const selectedPlan = degreePlans[selectedMajor] || degreePlans.CSE;
+
+  lastResult = { profile, attemptsRaw: allAttempts };
+  downloadJsonBtn.disabled = true;
+  clearResultsOnly();
+  setStudentProfile(profile);
+  creditsRequired.textContent = selectedPlan.totalCreditsRequired.toFixed(0);
+
+  if (detectedMajor && detectedMajor !== selectedMajor) {
+    const message = `Selected major is ${selectedMajor}, but the uploaded grade sheet appears to be for ${detectedMajor}. Either upload the correct mark sheet or select the major carefully.`;
+    showBlockingError(message);
+    return;
+  }
+
+  const result = analyzeProgress(allAttempts, selectedPlan);
+  if (result.totals.earned > selectedPlan.totalCreditsRequired) {
+    const message = `Credit exceeded the program's total credit limit! Calculated ${result.totals.earned.toFixed(0)} credits for ${selectedMajor}, but the ${selectedMajor} requirement is ${selectedPlan.totalCreditsRequired}. Either upload the correct mark sheet or select the major carefully.`;
+    showBlockingError(message);
+    return;
+  }
+
+  lastResult = { profile, attemptsRaw: allAttempts, ...result };
+  renderResult(lastResult);
+  downloadJsonBtn.disabled = false;
+  setStatus("Done", "success");
+}
+
+function showBlockingError(message) {
+  setStatus("Error", "danger");
+  creditsEarned.textContent = "--";
+  creditsRemaining.textContent = "--";
+  missingTable.innerHTML = `<tr><td colspan="3" class="text-muted">No result shown because validation failed.</td></tr>`;
+  completedTable.innerHTML = `<tr><td colspan="5" class="text-muted">No result shown because validation failed.</td></tr>`;
+  showAlert(message, "danger");
+  window.alert(message);
+}
+
+function clearResultsOnly() {
+  alerts.innerHTML = "";
+  creditsEarned.textContent = "--";
+  creditsRemaining.textContent = "--";
+  missingTable.innerHTML = `<tr><td colspan="3" class="text-muted">No data yet.</td></tr>`;
+  completedTable.innerHTML = `<tr><td colspan="5" class="text-muted">No data yet.</td></tr>`;
+}
+
+async function extractPdfText(file) {
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  const rows = [];
+  const textParts = [];
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+    const content = await page.getTextContent();
+    const pageRows = itemsToRows(content.items);
+    rows.push(...pageRows);
+    textParts.push(pageRows.join("\n"));
+  }
+  return { rows, text: textParts.join("\n") };
+}
+
+function itemsToRows(items) {
+  const byY = new Map();
+  for (const it of items) {
+    if (!it.str || !it.str.trim()) continue;
+    const x = it.transform[4];
+    const y = Math.round(it.transform[5] * 2) / 2;
+    if (!byY.has(y)) byY.set(y, []);
+    byY.get(y).push({ x, str: it.str.trim() });
+  }
+  return Array.from(byY.keys()).sort((a, b) => b - a).map((y) => {
+    return byY.get(y).sort((a, b) => a.x - b.x).map(i => i.str).join(" ").replace(/\s+/g, " ").trim();
+  }).filter(Boolean);
+}
+
+function parseCourses(rows, text) {
+  const combined = [...rows, ...text.split(/\r?\n/)].map(cleanLine).filter(Boolean);
+  const attempts = [];
+  attempts.push(...parseRowStyle(combined));
+  attempts.push(...parseSequentialStyle(combined));
+  return dedupeSameAttempt(attempts).map((c, index) => ({ ...c, order: index + 1 }));
+}
+
+function cleanLine(line) {
+  return String(line || "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function normalizeCode(code) {
+  const m = String(code || "").toUpperCase().match(/([A-Z]{3})\s*(\d{3})/);
+  return m ? `${m[1]}${m[2]}` : "";
+}
+
+function parseRowStyle(lines) {
+  const attempts = [];
+  const codeRe = /\b([A-Z]{3})\s*(\d{3})\b/;
+  const tailRe = /(0\.00|[1-6]\.00)\s+(A\+|A-|A|B\+|B-|B|C\+|C-|C|D\+|D|F|I|W)(?:\s*\((RP|NT|R)\))?\s+(\d\.\d{2})\b/;
+  for (let i = 0; i < lines.length; i++) {
+    let row = lines[i];
+    if (!codeRe.test(row)) continue;
+    for (let j = i + 1; j < Math.min(lines.length, i + 5) && !tailRe.test(row); j++) {
+      if (codeRe.test(lines[j]) && !/^GEOMETRY|^EQUATIONS|^TRANSFORMATIONS/i.test(lines[j])) break;
+      row += " " + lines[j];
+    }
+    const cm = row.match(codeRe);
+    const tm = row.match(tailRe);
+    if (!cm || !tm) continue;
+    const code = `${cm[1]}${cm[2]}`;
+    const titleStart = cm.index + cm[0].length;
+    const rawTitle = row.slice(titleStart, tm.index).trim();
+    attempts.push(makeCourse(code, rawTitle, Number(tm[1]), tm[2], Number(tm[4]), tm[3] || ""));
+  }
+  return attempts;
+}
+
+function parseSequentialStyle(lines) {
+  const attempts = [];
+  const codeOnlyRe = /^([A-Z]{3})\s*(\d{3})$/;
+  const decRe = /^(0\.00|[1-6]\.00)$/;
+  const gradeRe = /^(A\+|A-|A|B\+|B-|B|C\+|C-|C|D\+|D|F|I|W)(?:\s*\((RP|NT|R)\))?$/;
+  for (let i = 0; i < lines.length; i++) {
+    const cm = lines[i].match(codeOnlyRe);
+    if (!cm) continue;
+    const code = `${cm[1]}${cm[2]}`;
+    const titleParts = [];
+    let credits = null, grade = "", repeatTag = "", gp = null;
+    for (let j = i + 1; j < Math.min(lines.length, i + 12); j++) {
+      const line = lines[j];
+      if (/^SEMESTER\b|^CUMULATIVE\b|^Course No\b|^Credits Earned\b/i.test(line)) break;
+      if (codeOnlyRe.test(line) && titleParts.length > 0) break;
+      if (credits == null && decRe.test(line)) { credits = Number(line); continue; }
+      if (credits != null && !grade) {
+        const gm = line.match(gradeRe);
+        if (gm) { grade = gm[1]; repeatTag = gm[2] || ""; continue; }
+      }
+      if (credits != null && grade && gp == null && /^\d\.\d{2}$/.test(line)) { gp = Number(line); break; }
+      if (credits == null) titleParts.push(line);
+    }
+    if (credits != null && grade) attempts.push(makeCourse(code, titleParts.join(" "), credits, grade, gp ?? gradePoints[grade] ?? 0, repeatTag));
+  }
+  return attempts;
+}
+
+function makeCourse(code, title, credits, grade, gradePoint, repeatTag) {
+  const normalizedCode = normalizeCode(code);
+  return {
+    code: normalizedCode,
+    title: cleanCourseTitle(title) || courseTitleMap[normalizedCode] || "",
+    credits: Number.isFinite(credits) ? credits : (normalizedCode === "CSE400" ? PROJECT_CREDIT : COURSE_CREDIT_DEFAULT),
+    grade,
+    gradePoint: Number.isFinite(gradePoint) ? gradePoint : (gradePoints[grade] ?? 0),
+    repeatTag: repeatTag || "",
+    passed: grade && !["F", "I", "W"].includes(grade)
+  };
+}
+
+function cleanCourseTitle(title) {
+  return cleanLine(title)
+    .replace(/^[:-]+\s*/, "")
+    .replace(/\bCourse Title\b|\bCredits Earned\b|\bGrade Points\b|\bGrade\b/gi, "")
+    .trim();
+}
+
+function dedupeSameAttempt(attempts) {
+  const seen = new Set();
+  const result = [];
+  for (const c of attempts) {
+    const key = `${c.code}|${c.title}|${c.credits}|${c.grade}|${c.repeatTag}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(c);
+  }
+  return result;
+}
+
+function chooseCountingAttempts(attempts, plan) {
+  const requiredCodes = new Set([...(plan?.schoolCore || []), ...(plan?.programCoreGroups || []).flatMap(g => g.options), "CSE400"]);
+  const byCode = new Map();
+  for (const c of attempts) {
+    if (!byCode.has(c.code)) byCode.set(c.code, []);
+    byCode.get(c.code).push(c);
+  }
+  const counted = [];
+  const notCounted = [];
+  for (const group of byCode.values()) {
+    const sorted = [...group].sort((a, b) => a.order - b.order);
+    const rp = sorted.filter(c => c.repeatTag === "RP" && c.passed);
+    const hasNt = sorted.some(c => c.repeatTag === "NT");
+    const requiresRpAfterNt = hasNt && requiredCodes.has(sorted[0].code);
+    const usable = sorted.filter(c => c.passed && c.repeatTag !== "NT");
+    const chosen = requiresRpAfterNt ? (rp.at(-1) || null) : (rp.at(-1) || usable.at(-1) || null);
+    for (const c of sorted) {
+      if (chosen && c === chosen) counted.push({ ...c, counted: true, status: sorted.length > 1 ? "Counted repeat/final attempt" : "Counted" });
+      else notCounted.push({ ...c, counted: false, status: c.repeatTag === "NT" ? "Not counted (NT; requires RP if core)" : (c.passed ? "Not counted (repeated/extra attempt)" : (c.grade === "I" ? "Not counted (Incomplete)" : (c.grade === "W" ? "Not counted (Withdrawal)" : "Not counted (failed)"))) });
+    }
+  }
+  return [...counted, ...notCounted].sort((a, b) => a.order - b.order);
+}
+
+function analyzeProgress(attempts, plan) {
+  const courses = chooseCountingAttempts(attempts, plan);
+  const counted = courses.filter(c => c.counted);
+  const codeSet = new Set(counted.map(c => c.code));
+  const missing = [];
+  const addMissing = (requirement, notes, credits = COURSE_CREDIT_DEFAULT) => missing.push({ requirement, notes, credits });
+  const hasAny = (options) => options.some(code => codeSet.has(code));
+  const countCredits = (filterFn) => counted.filter(filterFn).reduce((sum, c) => sum + c.credits, 0);
+
+  for (const code of plan.genEd.writingRequired) if (!codeSet.has(code)) addMissing(code, "University Core - Writing Comprehension");
+  for (const code of plan.genEd.stream2Required) if (!codeSet.has(code)) addMissing(code, "University Core - Math and Natural Sciences");
+  for (const code of plan.genEd.stream3Required) if (!codeSet.has(code)) addMissing(code, "University Core - Arts and Humanities");
+  if (!hasAny(plan.genEd.stream3Choice)) addMissing("One Arts/Humanities choice", plan.genEd.stream3Choice.join(", "));
+  if (!hasAny(plan.genEd.stream4FixedChoice)) addMissing("EMB101 or DEV101", "University Core - Social Sciences");
+  if (!hasAny(plan.genEd.stream4Choice)) addMissing("One Social Sciences choice", plan.genEd.stream4Choice.join(", "));
+  if (!hasAny(plan.genEd.stream5Choice)) addMissing("One CST course", "University Core - Communities, Seeking Transformation");
+
+  const genEdCredits = countCredits(c => plan.genEdAll.has(c.code) && c.credits > 0);
+  if (genEdCredits < plan.genEdCreditsRequired) addMissing("GenEd electives/credits", `${plan.genEdCreditsRequired - genEdCredits} more GenEd credits needed`, plan.genEdCreditsRequired - genEdCredits);
+
+  for (const code of plan.schoolCore) if (!codeSet.has(code)) addMissing(code, "School Core");
+
+  for (const group of plan.programCoreGroups) {
+    if (!hasAny(group.options)) addMissing(group.label, `Program Core${group.options.length > 1 ? ": " + group.options.join("/") : ""}`);
+  }
+
+  const coreCodes = new Set(plan.programCoreGroups.flatMap(g => g.options));
+  const schoolCodes = new Set(plan.schoolCore);
+  const programElectives = counted.filter(c =>
+    c.credits > 0 &&
+    !coreCodes.has(c.code) &&
+    !schoolCodes.has(c.code) &&
+    c.code !== "CSE400" &&
+    !plan.genEdAll.has(c.code)
+  );
+  const programElectiveCredits = programElectives.reduce((sum, c) => sum + c.credits, 0);
+  const cseElectiveCredits = programElectives.filter(c => c.code.startsWith("CSE")).reduce((sum, c) => sum + c.credits, 0);
+  if (programElectiveCredits < plan.programElectiveCreditsRequired) addMissing("Program electives", `${plan.programElectiveCreditsRequired - programElectiveCredits} more elective credits needed`, plan.programElectiveCreditsRequired - programElectiveCredits);
+  if (cseElectiveCredits < 3) addMissing("At least one CSE elective", "Program Elective rule", 3 - cseElectiveCredits);
+
+  if (!codeSet.has("CSE400")) addMissing("CSE400", "Project / Internship / Thesis", PROJECT_CREDIT);
+
+  const earned = counted.reduce((sum, c) => sum + c.credits, 0);
+  return {
+    program: plan.name,
+    totals: {
+      earned,
+      required: plan.totalCreditsRequired,
+      remainingCredits: Math.max(0, plan.totalCreditsRequired - earned),
+      genEdCredits,
+      programElectiveCredits,
+      cseElectiveCredits,
+      genEdCreditsRequired: plan.genEdCreditsRequired,
+      programElectiveCreditsRequired: plan.programElectiveCreditsRequired
+    },
+    missingRequirements: missing,
+    completedCourses: courses
+  };
+}
+
+function extractStudentInfo(rows, text) {
+  const lines = [...rows, ...String(text || "").split(/\r?\n/)].map(cleanLine).filter(Boolean);
+  const full = lines.join("\n");
+
+  let id = "";
+  const idLine = lines.find(line => /Student ID/i.test(line));
+  if (idLine) id = (idLine.match(/Student ID\s*:?\s*(\d{8})/i) || [])[1] || "";
+  if (!id) id = (full.match(/Student ID\s*:?\s*(\d{8})/i) || [])[1] || "";
+
+  let name = "";
+  const nameLine = lines.find(line => /^Name\b/i.test(line) || /\bName\s*:/i.test(line));
+  if (nameLine) {
+    name = (nameLine.match(/Name\s*:?\s*(.*)$/i) || [])[1] || "";
+    name = name.replace(/\s+PROGRAM\b.*$/i, "").replace(/\s+UNDERGRADUATE\b.*$/i, "").trim();
+  }
+
+  let program = "";
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const m = line.match(/PROGRAM\s*:\s*(.*)$/i);
+    if (!m) continue;
+    const parts = [m[1]];
+    for (let j = i + 1; j < Math.min(lines.length, i + 3); j++) {
+      if (/^Course No\b|^SEMESTER\b|^Student ID\b|^Name\b/i.test(lines[j])) break;
+      parts.push(lines[j]);
+    }
+    program = cleanLine(parts.join(" ")).replace(/\s+Course No\b.*$/i, "").trim();
+    break;
+  }
+  if (!program) {
+    const pm = full.match(/PROGRAM\s*:\s*([^\n]+)(?:\n([^\n]+))?/i);
+    if (pm) program = cleanLine(`${pm[1]} ${pm[2] || ""}`).replace(/\s+Course No\b.*$/i, "").trim();
+  }
+
+  const semesters = [...full.matchAll(/SEMESTER\s*:\s*((SPRING|SUMMER|FALL)\s+\d{4})/gi)].map(m => m[1]);
+  const cgpas = [...full.matchAll(/CGPA\s+(\d+(?:\.\d+)?)/gi)].map(m => m[1]);
+  return { name: cleanLine(name), id, program, currentSemester: semesters.at(-1) || "", cgpa: cgpas.at(-1) || "" };
+}
+
+function detectMajorFromProfile(profile) {
+  const programText = String(profile?.program || "").toUpperCase();
+  if (programText.includes("COMPUTER SCIENCE AND ENGINEERING")) return "CSE";
+  if (programText.includes("COMPUTER SCIENCE")) return "CS";
+  return "";
+}
 
 function setStatus(label, variant) {
   statusPill.className = `badge text-bg-${variant}`;
@@ -235,11 +493,7 @@ function setStatus(label, variant) {
 }
 
 function showAlert(message, variant = "info") {
-  alerts.innerHTML = `
-    <div class="alert alert-${variant} border-0 shadow-sm" role="alert">
-      ${escapeHtml(message)}
-    </div>
-  `;
+  alerts.innerHTML = `<div class="alert alert-${variant}" role="alert">${escapeHtml(message)}</div>`;
 }
 
 function clearUI() {
@@ -248,13 +502,8 @@ function clearUI() {
   creditsRequired.textContent = "--";
   creditsRemaining.textContent = "--";
   setStudentProfile({});
-
   missingTable.innerHTML = `<tr><td colspan="3" class="text-muted">No data yet.</td></tr>`;
-  completedTable.innerHTML = `<tr><td colspan="4" class="text-muted">No data yet.</td></tr>`;
-}
-
-function getActiveProgram() {
-  return PROGRAMS[activeProgramKey] || PROGRAMS.cse;
+  completedTable.innerHTML = `<tr><td colspan="5" class="text-muted">No data yet.</td></tr>`;
 }
 
 function setStudentProfile(info) {
@@ -265,383 +514,28 @@ function setStudentProfile(info) {
   cgpa.textContent = info.cgpa || "--";
 }
 
-async function extractPdfRows(file) {
-  const buf = await file.arrayBuffer();
-  const pdf = await loadPdf(buf);
-
-  const rows = [];
-  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-    const page = await pdf.getPage(pageNum);
-    const content = await page.getTextContent();
-    rows.push(...itemsToRows(content.items));
-  }
-  return rows;
-}
-
-function itemsToRows(items) {
-  const byY = new Map();
-  for (const it of items) {
-    const x = it.transform[4];
-    const y = it.transform[5];
-    const key = Math.round(y * 2) / 2; // group by half-point to stabilize rows
-    if (!byY.has(key)) byY.set(key, []);
-    if (it.str && it.str.trim()) {
-      byY.get(key).push({ x, str: it.str.trim() });
-    }
-  }
-
-  const ys = Array.from(byY.keys()).sort((a, b) => b - a);
-  const rows = [];
-  for (const y of ys) {
-    const rowItems = byY.get(y).sort((a, b) => a.x - b.x);
-    const rowText = rowItems.map((r) => r.str).join(" ").replace(/\s+/g, " ").trim();
-    if (rowText) rows.push(rowText);
-  }
-  return rows;
-}
-
-/**
- * Robust-ish parser for BRACU-like grade sheet text extracted via PDF.js.
- * Strategy:
- * 1) Split into lines
- * 2) Find course code lines: /^[A-Z]{3}\d{3}\b/
- * 3) Extract credits + grade where possible
- * 4) If a line is only "MAT215 3.00 B+ 3.30", use previous line as title
- */
-function parseCoursesFromText(text) {
-  const lines = text
-    .split(/\r?\n/)
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  const courses = [];
-  const codeRe = /^([A-Z]{3}\d{3})\b\s*(.*)$/;
-  const tailRe = /^(.*)\s+(\d+\.\d{2})\s+([A-F][+-]?)\s+(\d+\.\d{2})$/;
-  const onlyNumsRe = /^(\d+\.\d{2})\s+([A-F][+-]?)\s+(\d+\.\d{2})$/;
-
-  for (let i = 0; i < lines.length; i++) {
-    const m = lines[i].match(codeRe);
-    if (!m) continue;
-
-    const code = m[1];
-    const rest = (m[2] || "").trim();
-
-    // Case: code line has only "3.00 A- 3.70"
-    const mOnly = rest.match(onlyNumsRe);
-    if (mOnly) {
-      const prev = lines[i - 1] || "";
-      const title =
-        prev && !prev.match(/^[A-Z]{3}\d{3}\b/) && !prev.startsWith("SEMESTER")
-          ? prev
-          : "";
-
-      courses.push({
-        code,
-        title,
-        credits: Number(mOnly[1]),
-        grade: mOnly[2]
-      });
-      continue;
-    }
-
-    // Normal: title + numbers on same line
-    const mTail = rest.match(tailRe);
-    if (mTail) {
-      courses.push({
-        code,
-        title: mTail[1].trim(),
-        credits: Number(mTail[2]),
-        grade: mTail[3]
-      });
-      continue;
-    }
-
-    // Forward-wrap: keep appending until we find credits+grade tail
-    let titleParts = [rest].filter(Boolean);
-    for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
-      const nxt = lines[j];
-
-      // stop early if next course begins
-      if (nxt.match(/^[A-Z]{3}\d{3}\b/) || nxt.startsWith("SEMESTER")) break;
-
-      const mt = nxt.match(tailRe);
-      if (mt) {
-        titleParts.push(mt[1].trim());
-        courses.push({
-          code,
-          title: titleParts.join(" ").replace(/\s+/g, " ").trim(),
-          credits: Number(mt[2]),
-          grade: mt[3]
-        });
-        break;
-      } else {
-        titleParts.push(nxt);
-      }
-    }
-  }
-
-  // Deduplicate by course code (if repeated attempts exist, you can improve this rule)
-  const seen = new Set();
-  const unique = [];
-  for (const c of courses) {
-    if (seen.has(c.code)) continue;
-    seen.add(c.code);
-    unique.push(c);
-  }
-  return unique;
-}
-
-function parseCoursesFromRows(rows) {
-  const courses = [];
-  const gradeRe = /^(A\+|A-|A|B\+|B-|B|C\+|C-|C|D\+|D|F)$/;
-  const decimalRe = /^\d+\.\d{2}$/;
-
-  const rowHasCode = (row) => {
-    const tokens = row.split(/\s+/);
-    for (let i = 0; i < tokens.length; i++) {
-      if (/^[A-Z]{3}\d{3}$/.test(tokens[i])) return true;
-      if (/^[A-Z]{3}$/.test(tokens[i]) && /^\d{3}$/.test(tokens[i + 1] || "")) return true;
-    }
-    return false;
-  };
-
-  const findCode = (tokens) => {
-    for (let i = 0; i < tokens.length; i++) {
-      if (/^[A-Z]{3}\d{3}$/.test(tokens[i])) {
-        return { code: tokens[i], idx: i, span: 1 };
-      }
-      if (/^[A-Z]{3}$/.test(tokens[i]) && /^\d{3}$/.test(tokens[i + 1] || "")) {
-        return { code: tokens[i] + tokens[i + 1], idx: i, span: 2 };
-      }
-    }
-    return null;
-  };
-
-  for (let i = 0; i < rows.length; i++) {
-    let row = rows[i].replace(/\s+/g, " ").trim();
-    if (!row) continue;
-
-    if (!rowHasCode(row)) continue;
-
-    // If row looks truncated, append the next non-code row to complete it.
-    let j = i;
-    while (j + 1 < rows.length) {
-      const next = rows[j + 1].replace(/\s+/g, " ").trim();
-      if (!next) {
-        j++;
-        continue;
-      }
-      if (rowHasCode(next)) break;
-      const hasGrade = row.split(/\s+/).some((t) => gradeRe.test(t));
-      const hasDecimal = row.split(/\s+/).some((t) => decimalRe.test(t));
-      if (hasGrade && hasDecimal) break;
-      row = row + " " + next;
-      j++;
-      if (row.split(/\s+/).some((t) => gradeRe.test(t)) && row.split(/\s+/).some((t) => decimalRe.test(t))) {
-        break;
-      }
-    }
-    i = j;
-
-    const tokens = row.split(/\s+/);
-    const codeInfo = findCode(tokens);
-    if (!codeInfo) continue;
-
-    const start = codeInfo.idx + codeInfo.span;
-    let gradeIdx = -1;
-    for (let k = tokens.length - 1; k >= start; k--) {
-      if (gradeRe.test(tokens[k])) {
-        gradeIdx = k;
-        break;
-      }
-    }
-
-    let credits = null;
-    let creditsIdx = -1;
-    const decimalCandidates = [];
-    for (let k = start; k < tokens.length; k++) {
-      if (decimalRe.test(tokens[k])) {
-        const val = Number(tokens[k]);
-        if (!Number.isNaN(val) && val <= 6) decimalCandidates.push({ idx: k, val });
-      }
-    }
-    if (decimalCandidates.length > 0) {
-      if (gradeIdx > -1) {
-        const beforeGrade = decimalCandidates.filter((d) => d.idx < gradeIdx);
-        if (beforeGrade.length > 0) {
-          const pick = beforeGrade[beforeGrade.length - 1];
-          credits = pick.val;
-          creditsIdx = pick.idx;
-        }
-      }
-      if (credits == null) {
-        const pick = decimalCandidates[0];
-        credits = pick.val;
-        creditsIdx = pick.idx;
-      }
-    }
-
-    const endIdx = creditsIdx > -1 ? creditsIdx : (gradeIdx > -1 ? gradeIdx : tokens.length);
-    const title = tokens.slice(start, endIdx).join(" ").trim();
-
-    courses.push({
-      code: codeInfo.code,
-      title,
-      credits: credits || 0,
-      grade: gradeIdx > -1 ? tokens[gradeIdx] : ""
-    });
-  }
-
-  const seen = new Set();
-  const unique = [];
-  for (const c of courses) {
-    if (seen.has(c.code)) continue;
-    seen.add(c.code);
-    unique.push(c);
-  }
-  return unique;
-}
-
-function extractStudentInfo(rows) {
-  const findFirstMatch = (regex) => {
-    for (const row of rows) {
-      const match = row.match(regex);
-      if (match) return match[1].trim();
-    }
-    return "";
-  };
-
-  const findLastMatch = (regex) => {
-    for (let i = rows.length - 1; i >= 0; i--) {
-      const match = rows[i].match(regex);
-      if (match) return match[1].trim();
-    }
-    return "";
-  };
-
-  const name = findFirstMatch(/Name\s*:\s*(.+)$/i);
-  const id = findFirstMatch(/Student ID\s*:\s*(\d+)/i);
-
-  let program = "";
-  for (let i = 0; i < rows.length; i++) {
-    const match = rows[i].match(/PROGRAM\s*:\s*(.+)$/i);
-    if (match) {
-      program = match[1].trim();
-      const next = rows[i + 1] || "";
-      if (next && /^[A-Z\s&]+$/.test(next) && !next.includes(":")) {
-        program = `${program} ${next.trim()}`;
-      }
-      break;
-    }
-  }
-
-  const currentSemester = findLastMatch(/SEMESTER\s*:\s*(SPRING|SUMMER|FALL)\s+(\d{4})/i)
-    ? findLastMatch(/SEMESTER\s*:\s*((?:SPRING|SUMMER|FALL)\s+\d{4})/i)
-    : "";
-  const cgpa = findLastMatch(/CGPA\s+(\d+(?:\.\d+)?)/i);
-
-  return { name, id, program, currentSemester, cgpa };
-}
-
-async function loadPdf(buffer) {
-  try {
-    return await pdfjsLib.getDocument({ data: buffer }).promise;
-  } catch (err) {
-    console.warn("PDF.js worker failed, retrying without worker:", err);
-    return await pdfjsLib.getDocument({ data: buffer, disableWorker: true }).promise;
-  }
-}
-
-function analyzeProgress(completedCourses, program) {
-  const catalog = program.catalog || [];
-  const catalogByCode = new Map(catalog.map((c) => [c.code, c]));
-  const requiredCategories = program.requiredCategories;
-
-  const mergedCompleted = completedCourses.map((c) => {
-    const catalogItem = catalogByCode.get(c.code);
-    return {
-      ...c,
-      title: c.title || catalogItem?.title || "",
-      credits: c.credits || catalogItem?.credits || 0,
-      category: catalogItem?.category || "",
-      stream: catalogItem?.stream || ""
-    };
-  });
-
-  const completedCodes = new Set(mergedCompleted.map((c) => c.code));
-  const earned = mergedCompleted.reduce((sum, c) => sum + (c.credits || 0), 0);
-
-  const totalRequired = program.totalCreditsRequired;
-  const remainingCredits = totalRequired != null
-    ? Math.max(0, totalRequired - earned)
-    : null;
-
-  const requiredList = requiredCategories
-    ? catalog.filter((c) => requiredCategories.has(c.category)).map((c) => c.code)
-    : catalog.map((c) => c.code);
-
-  const missingCore = requiredList
-    .filter((code) => !completedCodes.has(code))
-    .map((code) => {
-      const cat = catalogByCode.get(code);
-      return {
-        code,
-        credits: cat?.credits ?? 0,
-        notes: cat?.category || "Required"
-      };
-    });
-
-  return {
-    program: program.name,
-    totals: { earned, required: totalRequired, remainingCredits },
-    missingCore,
-    completedCourses: mergedCompleted.sort((a, b) => a.code.localeCompare(b.code)),
-    catalog
-  };
-}
-
 function renderResult(result) {
   creditsEarned.textContent = result.totals.earned.toFixed(0);
-  creditsRequired.textContent = result.totals.required == null ? "--" : result.totals.required.toFixed(0);
-  creditsRemaining.textContent = result.totals.remainingCredits == null ? "--" : result.totals.remainingCredits.toFixed(0);
+  creditsRequired.textContent = result.totals.required.toFixed(0);
+  creditsRemaining.textContent = result.totals.remainingCredits.toFixed(0);
 
-  if (result.missingCore.length === 0) {
-    missingTable.innerHTML = `<tr><td colspan="3" class="text-success">No missing core courses.</td></tr>`;
-  } else {
-    missingTable.innerHTML = result.missingCore.map((m) => `
-      <tr>
-        <td class="fw-semibold">${escapeHtml(m.code)}</td>
-        <td class="text-muted">${escapeHtml(m.notes)}</td>
-        <td class="text-end fw-semibold">${m.credits}</td>
-      </tr>
-    `).join("");
-  }
+  missingTable.innerHTML = result.missingRequirements.length
+    ? result.missingRequirements.map(m => `<tr><td>${escapeHtml(m.requirement)}</td><td>${escapeHtml(m.notes)}</td><td>${Number(m.credits).toFixed(0)}</td></tr>`).join("")
+    : `<tr><td colspan="3" class="text-success">No missing requirements detected.</td></tr>`;
 
-  if (result.completedCourses.length === 0) {
-    completedTable.innerHTML = `<tr><td colspan="4" class="text-muted">No courses detected.</td></tr>`;
-  } else {
-    completedTable.innerHTML = result.completedCourses.map((c) => `
-      <tr>
-        <td class="fw-semibold">${escapeHtml(c.code)}</td>
-        <td class="text-muted">${escapeHtml(c.title || "")}</td>
-        <td class="text-end">${(c.credits ?? 0).toFixed(2)}</td>
-        <td class="text-end fw-semibold">${escapeHtml(c.grade || "")}</td>
-      </tr>
-    `).join("");
-  }
+  result.completedCourses.sort((a, b) => a.order - b.order);
+  completedTable.innerHTML = result.completedCourses.length
+    ? result.completedCourses.map(c => `<tr><td>${escapeHtml(c.code)}</td><td>${escapeHtml(c.title || courseTitleMap[c.code] || "")}</td><td>${Number(c.credits || 0).toFixed(2)}</td><td>${escapeHtml(c.grade + (c.repeatTag ? " (" + c.repeatTag + ")" : ""))}</td><td>${escapeHtml(c.status)}</td></tr>`).join("")
+    : `<tr><td colspan="5" class="text-muted">No courses detected.</td></tr>`;
 
-  // Quick summary
-  const remaining = result.totals.remainingCredits == null ? "N/A" : result.totals.remainingCredits;
-  if (result.missingCore.length > 0) {
-    const list = result.missingCore.map(x => `${x.code} (${x.credits})`).join(", ");
-    showAlert(`Detected missing required items: ${list}. Credits remaining: ${remaining}.`, "info");
-  } else {
-    showAlert(`All required items detected as complete. Credits remaining: ${remaining}.`, "success");
-  }
+  const missingText = result.missingRequirements.map(m => `${m.requirement} (${m.credits})`).join(", ");
+  const extra = `Major: ${result.program}. GenEd credits: ${result.totals.genEdCredits}/${result.totals.genEdCreditsRequired}. Program elective credits: ${result.totals.programElectiveCredits}/${result.totals.programElectiveCreditsRequired}.`;
+  if (result.missingRequirements.length > 0) showAlert(`Detected missing requirements: ${missingText}. Credits remaining: ${result.totals.remainingCredits}. ${extra}`, "info");
+  else showAlert(`All requirements detected as complete. Credits remaining: ${result.totals.remainingCredits}. ${extra}`, "success");
 }
 
 function escapeHtml(str) {
-  return String(str)
+  return String(str ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
