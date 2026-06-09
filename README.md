@@ -1,25 +1,68 @@
-# BRACU Gradesheet Validator - CS/CSE Dynamic Logic
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![PDF.js](https://img.shields.io/badge/PDF.js-FF0000?logo=mozilla&logoColor=white)
 
-This version keeps the existing UI styling and updates the validator logic so it can:
+A lightweight, browser-based gradesheet analyzer for BRACU CSE. Upload a BRACU CSE grade sheet PDF, extract completed courses, and view missing core requirements with a clean, responsive UI.
 
-- validate both CSE and CS gradesheets through a major dropdown;
-- use 136 total credits for CSE and 124 total credits for CS;
-- keep the shared University Core and School Core constraints;
-- use separate Program Core and Program Elective requirements for CSE and CS;
-- count repeated courses correctly, including `(NT)` and `(RP)` grade-sheet tags;
-- require an `RP` replacement when a core course was marked `NT`;
-- ignore `I` (Incomplete) and `W` (Withdrawal) attempts for completed-credit counting;
-- parse non-CSE courses such as ENG, BNG, HUM, ECO, POL, CST, MAT, PHY, BIO, ENV and others;
-- count all courses as 3 credits except `CSE400`, which is 4 credits.
+<img src="./logo.jpg" alt="Project logo" width="160">
 
-## Run locally
+## Features
 
-Use a local server because browsers often block PDF parsing from `file://` URLs:
+- PDF parsing with in-browser PDF.js
+- Detects completed courses and grades
+- Highlights missing required courses
+- Student profile extraction (name, ID, program, current semester, CGPA)
+- Dark mode toggle and font size scaling
+- Fully responsive layout (mobile, tablet, desktop)
+
+## Project structure
+
+```
+.
++- index.html          # Main UI
++- styles.css          # Styling (light + dark themes)
++- app.js              # PDF parsing + UI rendering
++- vendor/             # Local PDF.js build
++- logo.jpg            # Favicon / branding
++- *.pdf               # Sample PDFs (optional)
+```
+
+## Getting started
+
+### Option 1: Simple local server (recommended)
+
+Some browsers block PDF parsing on `file://`. Use a local server:
 
 ```bash
 python -m http.server 5500
 ```
 
-Then open `http://localhost:5500`.
+Then open:
 
-The page uses PDF.js and Bootstrap from public CDNs.
+```
+http://localhost:5500
+```
+
+### Option 2: VS Code Live Server
+
+1) Install the **Live Server** extension  
+2) Right-click `index.html` ? **Open with Live Server**
+
+## How to use
+
+1) Open the app in a browser.  
+2) Upload a BRACU grade sheet PDF (text-based).  
+3) Click **Analyze PDF**.  
+4) Review detected courses, missing requirements, and profile data.
+
+## Notes
+
+- Best results come from text-based PDF exports.  
+- Scanned image PDFs are not supported without OCR.
+
+## License
+
+See `LICENSE`.
+
+
+## Live link
+
+https://faishal-monir.github.io/Bracu_CSE_GradeSheet_Validator/
